@@ -1,8 +1,9 @@
 <!-- omit in toc -->
 # mio
 
-[![MIO Test Pipeline](https://github.com/wissem01chiha/mio/actions/workflows/test.yml/badge.svg)](https://github.com/wissem01chiha/mio/actions/workflows/test.yml)
-[![MIO Docs Pipeline](https://github.com/wissem01chiha/mio/actions/workflows/doc.yml/badge.svg)](https://github.com/wissem01chiha/mio/actions/workflows/doc.yml)
+[![MIO Test Pipeline](https://github.com/maxtek6/mio/actions/workflows/test.yml/badge.svg)](https://github.com/maxtek6/mio/actions/workflows/test.yml)
+[![MIO Docs Pipeline](https://github.com/maxtek6/mio/actions/workflows/doc.yml/badge.svg)](https://github.com/maxtek6/mio/actions/workflows/doc.yml)
+[![codecov](https://codecov.io/gh/maxtek6/mio/branch/master/graph/badge.svg)](https://codecov.io/gh/maxtek6/mio)
 
 - [Why?](#why)
   - [How to create a mapping](#how-to-create-a-mapping)
@@ -336,12 +337,12 @@ The [use](https://services.github.com/on-demand/downloads/submodule-vs-subtree-c
 ```sh
 # via git submodule
 cd <my project's dependencies directory>
-git submodule add -b master https://github.com/mandreyel/mio.git
+git submodule add -b master https://github.com/maxtek6/mio.git
 
 # via git subtree
 cd <my project's root directory>
 git subtree add --prefix <path/to/dependencies>/mio       \
-    https://github.com/mandreyel/mio.git master --squash
+    https://github.com/maxtek6/mio.git master --squash
 ```
 
 Given a mio subdirectory in a project, simply add the following lines to your project's to add mio include directories to your target's include path.
