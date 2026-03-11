@@ -1,0 +1,42 @@
+name: MIO Release Pipeline
+
+on:
+  push:
+    branches: [ "master" ]
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Read version from file
+        id: version
+        run: |
+          VERSION=$(cat VERSION)
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create tar archive
+        run: |
+          tar -czf /tmp/mio-${{ steps.version.outputs.VERSION }}.tar.gz \
+            --exclude=.git \
+            --exclude=.github \
+            --exclude=build \
+            --exclude=.gitignore \
+            --exclude=.clang-format \
+            --exclude=.clang-tidy \
+            .
+
+      - name: Upload tar archive to release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.version.outputs.VERSION }}
+          name: ${{ steps.version.outputs.VERSION }}
+          files: /tmp/mio-${{ steps.version.outputs.VERSION }}.tar.gz
